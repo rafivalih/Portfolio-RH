@@ -25,6 +25,17 @@ import {
 	Send,
 	Terminal,
 } from "lucide-react";
+// import resumexImg from 'public/Resumex.png';
+
+// Moved outside to fix ESLint "missing dependency" warning
+const titles = [
+	"java Full Stack Developer",
+	"Frontend Developer",
+	"Backend Developer",
+	"Spring Developer",
+	"Java Developer",
+	"React Developer",
+];
 
 const skillIcons = {
 	React: Code2,
@@ -32,12 +43,24 @@ const skillIcons = {
 	Redux: Layers,
 	"JavaScript (ES6+)": Braces,
 	"Tailwind CSS": Paintbrush,
+	// HTML5: LayoutGrid,
+	CSS3: Paintbrush,
 	Bootstrap: LayoutGrid,
 	Java: Cpu,
 	"REST APIs": Send,
 	Postman: Terminal,
 	"Spring Boot": Server,
-	"RESTful APIs": Send,
+	"Spring Framework": Server,
+	Servlets: Server,
+	"JSP (JavaServer Pages)": LayoutGrid,
+	Microservices: Server,
+	MySQL: Database,
+	PostgreSQL: Database,
+	AWS: Cpu,
+	WordPress: LayoutGrid,
+	GitHub: Github,
+	Netlify: Send,
+	Vercel: Terminal,
 	"Database Integration": Database,
 	"Authentication & Authorization": ShieldCheck,
 	"Backend Business Logic": Server,
@@ -66,6 +89,14 @@ const skills = [
 		desc: "A utility-first CSS framework that allows rapid UI development by composing styles directly in markup, enabling responsive, consistent, and modern designs.",
 	},
 	{
+		name: "HTML5",
+		desc: "The standard markup language used to structure web pages with semantic elements, multimedia support, and improved accessibility.",
+	},
+	{
+		name: "CSS3",
+		desc: "A stylesheet language used to create responsive, visually appealing, and modern user interfaces with layouts, animations, and transitions.",
+	},
+	{
 		name: "Bootstrap",
 		desc: "A popular CSS framework that provides responsive grid systems and prebuilt UI components for quickly building consistent and mobile-friendly layouts.",
 	},
@@ -86,9 +117,50 @@ const skills = [
 		desc: "A Java-based framework used to build backend applications with simplified configuration and rapid development support.",
 	},
 	{
-		name: "RESTful APIs",
-		desc: "Designing and implementing REST APIs to enable structured and secure communication between frontend and backend services.",
+		name: "Spring Framework",
+		desc: "A comprehensive Java framework for building scalable, maintainable, and enterprise-grade applications using dependency injection, MVC architecture, and modular development.",
 	},
+	{
+		name: "Servlets",
+		desc: "Java server-side components used to handle HTTP requests, process business logic, and generate dynamic web content.",
+	},
+	{
+		name: "JSP (JavaServer Pages)",
+		desc: "A Java-based technology for creating dynamic web pages by embedding Java code into HTML for server-side rendering.",
+	},
+	{
+		name: "Microservices",
+		desc: "An architectural approach that structures applications as independent, loosely coupled services for better scalability, maintainability, and deployment.",
+	},
+	{
+		name: "MySQL",
+		desc: "A widely used relational database management system for storing, querying, and managing structured application data efficiently.",
+	},
+	{
+		name: "PostgreSQL",
+		desc: "An advanced open-source relational database known for reliability, performance, ACID compliance, and support for complex queries.",
+	},
+	{
+		name: "AWS",
+		desc: "Amazon Web Services cloud platform used to deploy, host, monitor, and scale applications using services such as EC2, S3, and RDS.",
+	},
+	{
+		name: "WordPress",
+		desc: "A popular content management system (CMS) used to build, customize, and manage responsive websites with themes and plugins.",
+	},
+	{
+		name: "GitHub",
+		desc: "A cloud-based Git platform for version control, code collaboration, repository management, and CI/CD workflows.",
+	},
+	{
+		name: "Netlify",
+		desc: "A cloud platform for deploying and hosting static websites with continuous deployment, custom domains, and serverless functions.",
+	},
+	{
+		name: "Vercel",
+		desc: "A cloud platform optimized for deploying frontend applications with automatic builds, global CDN, and seamless integration with modern frameworks.",
+	},
+
 	{
 		name: "Database Integration",
 		desc: "Integrating databases into backend applications to store, retrieve, and manage application data efficiently.",
@@ -118,14 +190,6 @@ const App = () => {
 	const [loopNum, setLoopNum] = useState(0);
 	const [typingSpeed, setTypingSpeed] = useState(150);
 
-	const titles = [
-		"Frontend Developer",
-		"Backend Developer",
-		"Full Stack Developer",
-		"Java Developer",
-		"React Developer",
-	];
-
 	useEffect(() => {
 		const timer = setTimeout(() => setIsLoading(false), 1500);
 		return () => clearTimeout(timer);
@@ -138,7 +202,7 @@ const App = () => {
 			setDisplayText(
 				isDeleting
 					? fullText.substring(0, displayText.length - 1)
-					: fullText.substring(0, displayText.length + 1)
+					: fullText.substring(0, displayText.length + 1),
 			);
 			setTypingSpeed(isDeleting ? 70 : 150);
 			if (!isDeleting && displayText === fullText) {
@@ -166,6 +230,13 @@ const App = () => {
 
 	const projects = [
 		{
+			title: "ResumeX",
+			tech: "React, Tailwind, Vite",
+			desc: "ResumeX – Fast responsive resume builder with 15+ templates and real-time preview for jobs today.",
+			image: "/Resumex.png",
+			link: "https://rafivalih.github.io/ResumeX/",
+		},
+		{
 			title: "Notes App",
 			tech: "React, Tailwind",
 			desc: "Created a Notes Application using React to add, archive, and pin notes with localStorage support.",
@@ -192,6 +263,20 @@ const App = () => {
 			desc: "The site layout adjusts smoothly for mobile, tablet, laptop, and desktop screens.",
 			image: "responsivedesign.png",
 			link: "https://rafivalih.github.io/responsive-web-design/",
+		},
+		{
+			title: "Ishaani Agro",
+			tech: "React.js, Vite, Tailwind CSS, Framer Motion",
+			desc: "Developed a fully responsive business website for a microgreens company with reusable components, smooth animations, and optimized user experience.",
+			image: "ishaaniargoimage.png",
+			link: "https://ishaani-argo.vercel.app/",
+		},
+		{
+			title: "RH Sweet Shop",
+			tech: "React.js, Vite, Tailwind CSS, JavaScript",
+			desc: "Created a responsive sweet shop website with modern UI, reusable React components, engaging product displays, and seamless navigation.",
+			image: "rhimage.png",
+			link: "https://trio-sweetshop.netlify.app/",
 		},
 		{
 			title: "Puzzle Game - Jigsaw",
@@ -223,7 +308,13 @@ const App = () => {
 			>
 				<div className="max-w-[95%] mx-auto px-4 h-16 flex justify-between items-center">
 					<span className="text-2xl font-black bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-						<a href="/">SRV</a>
+						<a
+							href="https://rafivalih.github.io/Portfolio-RH/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							SRV
+						</a>
 					</span>
 					<div className="hidden md:flex items-center space-x-10 text-sm lg:text-base">
 						{["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
@@ -253,7 +344,6 @@ const App = () => {
 						{isMenuOpen ? <X size={28} /> : <Menu size={28} />}
 					</button>
 				</div>
-				{/* Mobile Navigation Menu */}
 				<div
 					className={`${
 						isMenuOpen ? "block" : "hidden"
@@ -282,10 +372,14 @@ const App = () => {
 						<h3 className="text-blue-400 font-bold tracking-[0.3em] uppercase text-xs sm:text-sm">
 							Welcome to my world
 						</h3>
-						<h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight">
-              <h4 className="text-[30px]">Hello, It's Me</h4>
-							{personalInfo.name}
-						</h1>
+						<div>
+							<span className="block text-[30px] font-bold">
+								Hello, It's Me
+							</span>
+							<h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight">
+								{personalInfo.name}
+							</h1>
+						</div>
 						<div className="text-xl sm:text-2xl md:text-4xl font-bold h-10">
 							And I'm a{" "}
 							<span className="text-emerald-400 border-r-4 border-emerald-400 pr-2 text-2xl sm:text-2xl md:text-3xl lg:text-5xl">
@@ -297,7 +391,7 @@ const App = () => {
 						</p>
 						<div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 justify-center md:justify-start">
 							<a
-								href="Rafivali_Shaik Frontend Resume.pdf"
+								href="Rafivali_Shaik_Frontend_Resume.pdf"
 								download
 								className="w-full sm:w-auto"
 							>
@@ -325,29 +419,26 @@ const App = () => {
 							</div>
 						</div>
 						<p className="animate-float p-1 text-blue-400 text-sm sm:text-base">
-							Know more about me 👇
+							<a href="#about">Know more about me 👇</a>
 						</p>
 					</div>
 					<div className="w-full md:w-2/5 flex justify-center">
-  <div className="relative w-48 h-48 sm:w-72 sm:h-72 lg:w-80 lg:h-80 p-[3px] rounded-full
-                  bg-[conic-gradient(from_0deg,#3b82f6,#a855f7,#3b82f6)]">
-    
-    {/* THIS div is the BORDER — rotate ONLY this */}
-    <div
-      className="absolute inset-0 rounded-full
+						<div
+							className="relative w-48 h-48 sm:w-72 sm:h-72 lg:w-80 lg:h-80 p-[3px] rounded-full
+                  bg-[conic-gradient(from_0deg,#3b82f6,#a855f7,#3b82f6)]"
+						>
+							<div
+								className="absolute inset-0 rounded-full
                  bg-[conic-gradient(from_0deg,#3b82f6,#a855f7,#3b82f6)]
                  blur-xl opacity-60 animate-spin-slow"
-    ></div>
-
-    {/* IMAGE — stays still */}
-    <img
-      src="linkedin profile pic.jpg"
-      alt="Profile"
-      className="relative w-full h-full rounded-full object-cover bg-black"
-    />
-  </div>
-</div>
-
+							></div>
+							<img
+								src="linkedin_profile_pic.jpg"
+								alt="Profile"
+								className="relative w-full h-full rounded-full object-cover bg-black"
+							/>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -363,8 +454,7 @@ const App = () => {
 						<img
 							src="aboutphoto.jpeg"
 							alt="About"
-							  className="w-[500px] h-[500px] border-4 border-yellow-800 rounded-full object-cover"
-
+							className="w-[500px] h-[500px] border-4 border-yellow-800 rounded-full object-cover"
 						/>
 					</div>
 					<div className="w-full md:w-2/3">
@@ -423,7 +513,6 @@ const App = () => {
 										key={skill.name}
 										className="relative group p-4 bg-slate-800/20 border border-slate-700/50 rounded-xl flex items-center gap-3 cursor-pointer hover:border-blue-500 transition"
 									>
-										{/* <Code2 className="text-emerald-500 shrink-0" size={18} /> */}
 										{(() => {
 											const Icon = skillIcons[skill.name] || Code2;
 											return (
@@ -488,32 +577,38 @@ const App = () => {
 						{activeTab === "certifications" && (
 							<div className="grid grid-cols-1 gap-3">
 								{[
-                  {
-									"Name":"React JS Development",
-                  "URL" :"https://media.geeksforgeeks.org/courses/certificates/590ad26ea24688433338286457b7bb0c.pdf"
-                },
-                  {
-									"Name":"Next.js Development",
-                  "URL" :"https://media.geeksforgeeks.org/courses/certificates/4ed205ca0b4f70295dfe7b4bee7b838e.pdf"
-                },
-                  {
-									"Name":"Front-End Interview Prep",
-                  "URL" :"https://media.geeksforgeeks.org/courses/certificates/511157cbd55c161fa1b83b2203cea5a6.pdf"
-                },
-									
+									{
+										Name: "React JS Development",
+										URL: "https://media.geeksforgeeks.org/courses/certificates/590ad26ea24688433338286457b7bb0c.pdf",
+									},
+									{
+										Name: "Next.js Development",
+										URL: "https://media.geeksforgeeks.org/courses/certificates/4ed205ca0b4f70295dfe7b4bee7b838e.pdf",
+									},
+									{
+										Name: "Front-End Interview Prep",
+										URL: "https://media.geeksforgeeks.org/courses/certificates/511157cbd55c161fa1b83b2203cea5a6.pdf",
+									},
 								].map((cert, i) => (
-									<div className="p-4 sm:p-5 bg-slate-800/20 rounded-xl border border-slate-700 ">
-                  <div
+									<div
 										key={i}
-										className="flex items-center gap-4 mb-2"
+										className="p-4 sm:p-5 bg-slate-800/20 rounded-xl border border-slate-700 "
 									>
-										<Award className="text-yellow-500 shrink-0" />{" "}
-										<span className="font-bold text-sm sm:text-base">
-											{cert.Name} – GeeksforGeeks
-										</span>
+										<div className="flex items-center gap-4 mb-2">
+											<Award className="text-yellow-500 shrink-0" />{" "}
+											<span className="font-bold text-sm sm:text-base">
+												{cert.Name} – GeeksforGeeks
+											</span>
+										</div>
+										<a
+											className="flex gap-2 text-blue-400 hover:underline"
+											href={cert.URL}
+											target="_blank"
+											rel="noreferrer"
+										>
+											Link <TrendingUp size={16} />{" "}
+										</a>
 									</div>
-                  <a className="flex gap-2" href={cert.URL} target="_blank">Link <TrendingUp/> </a>
-                  </div>
 								))}
 							</div>
 						)}
@@ -548,7 +643,7 @@ const App = () => {
 									/>
 								</div>
 								<div className="p-6 md:p-8 space-y-4 flex-grow flex flex-col justify-between">
-									<div className="space-y-2">
+									<div className="space-y-2 text-left">
 										<h3 className="text-xl md:text-2xl font-bold">{p.title}</h3>
 										<p className="text-blue-500 text-xs md:text-sm font-bold tracking-widest uppercase">
 											{p.tech}
@@ -557,17 +652,17 @@ const App = () => {
 											{p.desc}
 										</p>
 									</div>
-									{i !== 4 && (
+									{p.link && (
 										<div className="flex justify-center items-center gap-2">
 											<a
-												className="text-blue-600 text-[18px]"
+												className="text-blue-600 text-[18px] font-bold"
 												href={p.link}
 												target="_blank"
 												rel="noreferrer"
 											>
 												View
 											</a>
-											<TrendingUp size={20} />
+											<TrendingUp size={20} className="text-blue-600" />
 										</div>
 									)}
 								</div>
@@ -610,20 +705,32 @@ const App = () => {
 								href={social.link}
 								target="_blank"
 								rel="noreferrer"
-								className={`p-4 sm:p-5 rounded-full border-2 border-blue-500/30 text-blue-500 transition-all duration-300 hover:scale-110`}
+								className="p-4 sm:p-5 rounded-full border-2 border-blue-500/30 text-blue-500 transition-all duration-300 hover:scale-110"
 							>
 								{social.icon}
 							</a>
 						))}
 					</div>
 					<div className="mt-12 md:mt-16 flex flex-col sm:flex-row justify-center items-center gap-6 md:gap-8 text-slate-500 font-semibold text-sm sm:text-base">
-						<div className="flex items-center gap-2">
-							<Phone size={18} className="text-blue-500" />
-							<span>{personalInfo.phone}</span>
+						<div className="flex items-center gap-2 hover:scale-105">
+							<Phone size={18} className="text-blue-500 " />
+							<span>
+								<a href="tel:+919392473521" target="_blank" rel="noreferrer">
+									{personalInfo.phone}
+								</a>
+							</span>
 						</div>
-						<div className="flex items-center gap-2">
+						<div className="flex items-center gap-2 hover:scale-105">
 							<MapPin size={18} className="text-blue-500" />
-							<span>{personalInfo.location}</span>
+							<span>
+								<a
+									href="https://maps.app.goo.gl/UcnYxj2NqpeUHzyP9"
+									target="_blank"
+									rel="noreferrer"
+								>
+									{personalInfo.location}
+								</a>
+							</span>
 						</div>
 					</div>
 				</div>
